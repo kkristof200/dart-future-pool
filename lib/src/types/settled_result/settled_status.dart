@@ -1,0 +1,4 @@
+enum SettledStatus {
+  fulfilled,
+  rejected
+}

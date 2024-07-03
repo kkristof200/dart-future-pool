@@ -1,43 +1,17 @@
-### future_pool
-
-## Description
-
-Execute multiple async functions in parallel with a pooling mechanism.
-
-## Installing
-
-```bash
-dart pub add future_pool
-```
-
-or
-
-```bash
-flutter pub add future_pool
-```
-
-## Features
-
-- Set maximum concurrency
-- Optional callback for every successful/failed/all future results
-
-## Usage
-
-```dart
-import  'dart:math';
-import  'package:future_pool/future_pool.dart';
+import 'dart:math';
+import 'package:future_pool/future_pool.dart';
 
 Future<int> future() async {
-  int  seconds  =  Random().nextInt(5) +  1;
-  await  Future.delayed(Duration(seconds:  seconds));
+  int seconds = Random().nextInt(5) + 1;
+  await Future.delayed(Duration(seconds: seconds));
 
-  return  seconds;
+  return seconds;
 }
 
 void main() async {
   final results = await FuturePool.allSettled(
-    List<Future<int> Function()>.filled(10, () =>  future()),
-    maxConcurrency:  3,
+    List<Future<int> Function()>.filled(10, () => future()),
+    maxConcurrency: 3,
     // onFutureCompleted: (result, index) {
     //   if (result.status == SettledStatus.fulfilled) {
     //     print('Future $index fulfilled with value: ${result.value}');
@@ -50,17 +24,16 @@ void main() async {
     },
     onFutureFail: (result, index) {
       print('Future $index rejected with reason: ${result.reason}');
-    }
+    },
   );
 
   print('Finished all results $results');
 
-  for (var  result  in  results) {
-    if (result.status  ==  SettledStatus.fulfilled) {
+  for (var result in results) {
+    if (result.status == SettledStatus.fulfilled) {
       print('Fulfilled: ${result.value}');
     } else {
       print('Rejected: ${result.reason}');
     }
   }
 }
-```
