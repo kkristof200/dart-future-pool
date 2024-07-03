@@ -1,6 +1,6 @@
 name: future_pool
 description: Execute multiple async functions in parallel with a pooling mechanism
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/kkristof200/dart-future-pool
 
 platforms:
@@ -12,7 +12,7 @@ platforms:
   windows:
 
 environment:
-  sdk: ^3.4.4
+  sdk: ^3.0.0
 
 # Add regular dependencies here.
 dependencies:
